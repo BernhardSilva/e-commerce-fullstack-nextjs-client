@@ -107,7 +107,7 @@ export const Carousel = (props: Props) => {
 					<div className='h-full w-full flex flex-col justify-center items-center text-center gap-x-8'>
 						<div className='flex justify-center mt-5'>
 							{props.images.slice(0, props.maxImages).map((image, index) => (
-								<button key={currentIndex} className='px-4 py-2 mx-2' onClick={() => selectedButtonClick(index, image)}>
+								<button key={image.id} className='px-4 py-2 mx-2' onClick={() => selectedButtonClick(index, image)}>
 									{index === currentIndex ? <CircleIcon /> : <CircleIcon color='#616161' />}
 								</button>
 							))}
