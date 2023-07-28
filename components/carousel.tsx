@@ -1,18 +1,18 @@
-import { ArrowBigLeftIcon, ArrowBigRightIcon, CircleIcon, XCircleIcon } from 'lucide-react';
+import { ArrowBigLeftIcon, ArrowBigRightIcon, CircleIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface ImageProps {
-	id: string;
-	label: string;
+	id: string | number;
+	label?: string;
 	imageUrl: string;
 }
 
 interface Props {
 	images: ImageProps[];
+	maxImages?: number;
+	time?: number; //ms
 	autoPlay?: boolean;
 	showButtons?: boolean;
-	time?: number; //ms
-	maxImages?: number;
 }
 
 export const Carousel = (props: Props) => {
@@ -64,17 +64,18 @@ export const Carousel = (props: Props) => {
 		<>
 			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={selectedImage.id}>
 				<div
-					style={{ backgroundImage: `url(${selectedImage?.imageUrl})`, filter: 'brightness(70%)' }}
-					className={`rounded-xl relative aspect-square  md:aspect-[2.4/1] overflow-hidden bg-cover ransition duration-1000 ${
-						loaded ? 'opacity-100' : ''
+					style={{ backgroundImage: `url(${selectedImage.imageUrl})`, filter: 'brightness(70%)' }}
+					className={`rounded-xl relative aspect-square  md:aspect-[2.4/1] overflow-hidden bg-cover
 					}`}
 				>
 					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>
-						<div className='flex justify-around mt-5'>
-							<div className='border border-black bg-slate-50 bg-opacity-30 rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '>
-								{selectedImage?.label}
+						{selectedImage.label && (
+							<div className='flex justify-around mt-5'>
+								<div className='border border-black bg-slate-50 bg-opacity-30 rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '>
+									{selectedImage.label}
+								</div>
 							</div>
-						</div>
+						)}
 						{props.showButtons && (
 							<button
 								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black bg-slate-50 bg-opacity-30 rounded-full'
@@ -103,7 +104,7 @@ export const Carousel = (props: Props) => {
 									className='px-4 py-2 mx-2'
 									onClick={() => handleSelectedImageButtonClick(index, image)}
 								>
-									{index === selectedIndex ? <CircleIcon /> : <CircleIcon color='#616161'/>}
+									{index === selectedIndex ? <CircleIcon /> : <CircleIcon color='#616161' />}
 								</button>
 							))}
 						</div>
