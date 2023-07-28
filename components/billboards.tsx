@@ -17,7 +17,6 @@ export const Billboards = ({ data }: BillboardProps) => {
 		<Carousel
 			images={images}
 			maxImages={5}
-			imageBrightness={60}
 			autoPlay={true}
 			showButtons={true}
 			time={10000}

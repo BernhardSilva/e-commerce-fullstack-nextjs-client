@@ -10,7 +10,6 @@ interface ImageProps {
 interface Props {
 	images: ImageProps[];
 	maxImages?: number;
-	imageBrightness?: number;
 	time?: number; //ms
 	autoPlay?: boolean;
 	showButtons?: boolean;
@@ -69,16 +68,19 @@ export const Carousel = (props: Props) => {
 			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={currentImage.id}>
 				<div
 					style={{
-						backgroundImage: `url(${currentImage.imageUrl})`,
-						filter: `brightness(${!props.imageBrightness ? 70 : props.imageBrightness}%)`,
-						opacity: loaded ? '1' : '0.8'
+						backgroundImage: `url(${currentImage.imageUrl})`
 					}}
-					className={`rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover`}
+					className={`rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover
+					brightness-75 dark:brightness-90`}
 				>
 					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>
 						{currentImage.label && (
 							<div className='flex justify-around mt-5'>
-								<div className='border border-black bg-slate-50 bg-opacity-30 rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '>
+								<div
+									className='border border-black bg-slate-50 bg-opacity-30
+									dark:border-white dark:bg-zinc-950 dark:bg-opacity-50
+									rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '
+								>
 									{currentImage.label}
 								</div>
 							</div>
@@ -86,7 +88,7 @@ export const Carousel = (props: Props) => {
 
 						{props.showButtons && (
 							<button
-								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black bg-slate-50 bg-opacity-30 rounded-full'
+								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
 								onClick={previous}
 							>
 								<ArrowBigLeftIcon />
@@ -95,7 +97,7 @@ export const Carousel = (props: Props) => {
 
 						{props.showButtons && (
 							<button
-								className='absolute sm:p-2 md:p-4 lg:p-5 mr-1 right-1 mt-5 border border-black bg-slate-50 bg-opacity-30 rounded-full'
+								className='absolute sm:p-2 md:p-4 lg:p-5 mr-1 right-1 mt-5 border border-black bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
 								onClick={next}
 							>
 								<ArrowBigRightIcon />

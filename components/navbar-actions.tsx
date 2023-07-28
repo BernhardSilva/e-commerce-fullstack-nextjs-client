@@ -1,8 +1,9 @@
 'use client';
 
-import Button from '@/components/ui/button';
+import CustomButton from '@/components/ui/custom-button';
 import { ShoppingBag } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 export const NavbarActions = () => {
 	const [isMounted, setIsMounted] = useState(false);
@@ -15,10 +16,11 @@ export const NavbarActions = () => {
 
 	return (
 		<div className='ml-auto flex items-center gap-x-4'>
-			<Button className='flex items-center rounded-full bg-black px-4 py-2'>
-				<ShoppingBag size={20} color='white' />
-			</Button>
-			<span className='ml-2 text-sm font-medium text-black dark:text-white'>0</span>
+			<CustomButton className='flex items-center rounded-full bg-black dark:bg-zinc-700 px-4 py-2'>
+				<ShoppingBag size={20} color={'white'} />
+			</CustomButton>
+			<ThemeToggle />
+			<span className='ml-2 text-sm font-medium'>0</span>
 		</div>
 	);
 };

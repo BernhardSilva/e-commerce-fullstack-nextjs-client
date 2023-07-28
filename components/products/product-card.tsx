@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ item }: ProductCardProps) => {
 	return (
-		<div className='bg-white group cursor-pointer rounded-xl border p-3 space-y-4'>
+		<div className='group cursor-pointer rounded-xl border p-3 space-y-4 dark:border-zinc-800'>
 			{/* Images and actions */}
 			<div className='aspect-square rounded-xl bg-gray-100 relative'>
 				<Image
