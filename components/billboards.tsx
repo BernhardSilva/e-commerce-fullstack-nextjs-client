@@ -1,7 +1,7 @@
 'use client';
 
 import { Billboard as BillboardType } from '@/types';
-import { Carousel } from './carousel';
+import { Carousel } from '@/components/ui/carousel';
 
 interface BillboardProps {
 	data: BillboardType[];

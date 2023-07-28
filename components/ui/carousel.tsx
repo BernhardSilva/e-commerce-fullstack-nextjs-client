@@ -70,7 +70,7 @@ export const Carousel = (props: Props) => {
 					style={{
 						backgroundImage: `url(${currentImage.imageUrl})`
 					}}
-					className={`rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover
+					className={`rounded-xl relative aspect-square sm:aspect-[2.6/2] md:aspect-[6.4/2] lg:aspect-[6.8/2] overflow-hidden bg-cover
 					brightness-75 dark:brightness-90`}
 				>
 					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>

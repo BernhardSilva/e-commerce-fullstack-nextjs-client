@@ -5,14 +5,20 @@ import { Expand, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import IconButton from '../ui/icon-button';
 import Currency from '@/components//ui/currency';
+import { useRouter } from 'next/navigation';
 
 interface ProductCardProps {
 	item: Product;
 }
 
 const ProductCard = ({ item }: ProductCardProps) => {
+	const router = useRouter();
+
+	const handleClick = () => {
+		router.push(`/product/${item?.id}`);
+	};
 	return (
-		<div className='group cursor-pointer rounded-xl border p-3 space-y-4 dark:border-zinc-800'>
+		<div onClick={handleClick} className='group cursor-pointer rounded-xl border p-3 space-y-4 dark:border-zinc-800'>
 			{/* Images and actions */}
 			<div className='aspect-square rounded-xl bg-gray-100 relative'>
 				<Image
@@ -23,7 +29,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
 				/>
 				<div className='opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5'>
 					<div className='flex gap-x-6 justify-center'>
-						<IconButton onClick={() => {}} icon={<Expand size={20} className='text-gray-600 dark:text-black' />} />
+						<IconButton onClick={handleClick} icon={<Expand size={20} className='text-gray-600 dark:text-black' />} />
 						<IconButton
 							onClick={() => {}}
 							icon={<ShoppingCart size={20} className='text-gray-600 dark:text-black' />}

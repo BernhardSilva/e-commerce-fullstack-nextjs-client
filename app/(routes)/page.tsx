@@ -1,5 +1,5 @@
 import getBillboards from '@/actions/get-billboards';
-import getProducts from '@/actions/get-produts';
+import getProducts from '@/actions/get-products';
 import { Billboards } from '@/components/billboards';
 import ProductList from '@/components/products/product-list';
 import Container from '@/components/ui/container';
