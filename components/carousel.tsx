@@ -10,6 +10,7 @@ interface ImageProps {
 interface Props {
 	images: ImageProps[];
 	maxImages?: number;
+	imageBrightness?: number;
 	time?: number; //ms
 	autoPlay?: boolean;
 	showButtons?: boolean;
@@ -18,8 +19,7 @@ interface Props {
 export const Carousel = (props: Props) => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [selectedImage, setSelectedImage] = useState<ImageProps>(props.images[0]);
-	const [loaded, setLoaded] = useState(false);
-	const maxImages = props.maxImages && -props.maxImages;
+	const [loaded, setLoaded] = useState(true);
 
 	useEffect(() => {
 		if (props.autoPlay || !props.showButtons) {
@@ -33,23 +33,32 @@ export const Carousel = (props: Props) => {
 		}
 	});
 
+	useEffect(() => {
+		console.log(selectedIndex);
+	}, [selectedImage, selectedIndex]);
+
 	const selectNewImage = (index: number, images: ImageProps[], next = true) => {
 		setLoaded(false);
 
-		const imagesLength = maxImages ? props.images.slice(maxImages).length - 1 : images.length - 1;
+		const imagesLength = props.maxImages ? props.images.slice(0, props.maxImages).length - 1 : images.length - 1;
 		setTimeout(() => {
 			const condition = next ? index < imagesLength : index > 0;
 			const nextIndex = next ? (condition ? index + 1 : 0) : condition ? index - 1 : imagesLength;
 			setSelectedImage(images[nextIndex]);
 			setSelectedIndex(nextIndex);
+			setLoaded(true);
 		}, 500);
 	};
 
 	const handleSelectedImageButtonClick = (index: number, selectedImage: ImageProps) => {
-		setTimeout(() => {
-			setSelectedIndex(index);
-			setSelectedImage(selectedImage);
-		}, 500);
+		if (selectedIndex !== index) {
+			setLoaded(false);
+			setTimeout(() => {
+				setSelectedIndex(index);
+				setSelectedImage(selectedImage);
+				setLoaded(true);
+			}, 500);
+		}
 	};
 
 	const previous = () => {
@@ -64,9 +73,12 @@ export const Carousel = (props: Props) => {
 		<>
 			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={selectedImage.id}>
 				<div
-					style={{ backgroundImage: `url(${selectedImage.imageUrl})`, filter: 'brightness(70%)' }}
-					className={`rounded-xl relative aspect-square  md:aspect-[2.4/1] overflow-hidden bg-cover
-					}`}
+					style={{
+						backgroundImage: `url(${selectedImage.imageUrl})`,
+						filter: `brightness(${!props.imageBrightness ? 70 : props.imageBrightness}%)`,
+						opacity: loaded ? '1' : '0.8'
+					}}
+					className={`rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover`}
 				>
 					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>
 						{selectedImage.label && (
@@ -76,6 +88,7 @@ export const Carousel = (props: Props) => {
 								</div>
 							</div>
 						)}
+
 						{props.showButtons && (
 							<button
 								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black bg-slate-50 bg-opacity-30 rounded-full'
@@ -98,9 +111,9 @@ export const Carousel = (props: Props) => {
 				{props.showButtons && (
 					<div className='h-full w-full flex flex-col justify-center items-center text-center gap-x-8'>
 						<div className='flex justify-center mt-5'>
-							{props.images.slice(maxImages).map((image, index) => (
+							{props.images.slice(0, props.maxImages).map((image, index) => (
 								<button
-									key={index}
+									key={selectedIndex}
 									className='px-4 py-2 mx-2'
 									onClick={() => handleSelectedImageButtonClick(index, image)}
 								>

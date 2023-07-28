@@ -13,5 +13,5 @@ export const Billboards = ({ data }: BillboardProps) => {
 		imageUrl: billboard.imageUrl,
 		label: billboard.label
 	}));
-	return <Carousel images={images} maxImages={5} autoPlay={true} showButtons={true} time={10000}></Carousel>;
+	return <Carousel images={images} maxImages={2} imageBrightness={60} autoPlay={false} showButtons={true} time={10000}></Carousel>;
 };
