@@ -33,7 +33,6 @@ export interface Billboard {
 	label: string;
 	imageUrl: string;
 }
-
 export interface Store {
 	name: string;
 }

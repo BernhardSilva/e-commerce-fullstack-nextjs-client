@@ -78,7 +78,7 @@ export const Carousel = (props: Props) => {
 							<div className='flex justify-around mt-5'>
 								<div
 									className='border border-black bg-slate-50 bg-opacity-30
-									dark:border-white dark:bg-zinc-950 dark:bg-opacity-50
+									dark:border-white dark:bg-slate-950 dark:bg-opacity-50
 									rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '
 								>
 									{currentImage.label}

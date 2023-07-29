@@ -18,11 +18,11 @@ const Info = ({ data }: InfoProps) => {
 	const onAddToCart = () => {
 		cart.addItem(data);
 	};
-    
+
 	return (
 		<div>
 			<h1 className='text-3xl font-bold'>{data.name}</h1>
-            <code className='mt-3 flex items-center gap-x-2' dangerouslySetInnerHTML={{ __html: data.description }} />
+			<code className='mt-3 flex items-center gap-x-2' dangerouslySetInnerHTML={{ __html: data.description }} />
 			<div className='mt-3 flex items-end justify-between'>
 				<p className='text-2xl'>
 					<Currency value={data?.price} />

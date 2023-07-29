@@ -8,18 +8,19 @@ export const formatter = new Intl.NumberFormat('en-US', {
 });
 
 type CurrencyProps = {
-	value?: string;
+	value?: string | number;
 };
 
-const Currency = ({ value }: CurrencyProps) => {
+const Currency = ({ value = 0 }: CurrencyProps) => {
 	const [isMounted, setIsMounted] = useState(false);
+
 	useEffect(() => {
 		setIsMounted(true);
 	}, []);
 
 	if (!isMounted) return null;
 
-	return <div>{formatter.format(Number(value))}</div>;
+	return <div className='font-semibold'>{formatter.format(Number(value))}</div>;
 };
 
 export default Currency;
