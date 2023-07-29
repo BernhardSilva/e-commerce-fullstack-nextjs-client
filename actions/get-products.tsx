@@ -14,15 +14,15 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 	const url = queryString.stringifyUrl({
 		url: URL,
 		query: {
+			categoryId: query.categoryId,
 			colorId: query.colorId,
 			sizeId: query.sizeId,
-			categoryId: query.categoryId,
 			isFeatured: query.isFeatured
 		}
 	});
 
-	const response = await fetch(url, { cache: 'no-store' });
-	return response.json();
+	const res = await fetch(url, { cache: 'no-store' });
+	return res.json();
 };
 
 export default getProducts;
