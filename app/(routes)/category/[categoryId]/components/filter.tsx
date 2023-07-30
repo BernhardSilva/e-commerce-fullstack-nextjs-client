@@ -1,6 +1,6 @@
 'use client';
 
-import qs from 'query-string';
+import queryString from 'query-string';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
@@ -13,14 +13,14 @@ interface FilterProps {
 	valueKey: string;
 }
 
-const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
+const Filter = ({ data, name, valueKey }: FilterProps) => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 
 	const selectedValue = searchParams.get(valueKey);
 
 	const onClick = (id: string) => {
-		const current = qs.parse(searchParams.toString());
+		const current = queryString.parse(searchParams.toString());
 
 		const query = {
 			...current,
@@ -31,7 +31,7 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
 			query[valueKey] = null;
 		}
 
-		const url = qs.stringifyUrl(
+		const url = queryString.stringifyUrl(
 			{
 				url: window.location.href,
 				query

@@ -7,6 +7,7 @@ interface Query {
 	categoryId?: string;
 	colorId?: string;
 	sizeId?: string;
+	productName?: string;
 	isFeatured?: boolean;
 }
 
@@ -14,6 +15,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 	const url = queryString.stringifyUrl({
 		url: URL,
 		query: {
+			productName: query.productName,
 			categoryId: query.categoryId,
 			colorId: query.colorId,
 			sizeId: query.sizeId,

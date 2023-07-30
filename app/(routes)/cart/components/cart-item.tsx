@@ -32,15 +32,21 @@ const CartItem = ({ data }: CartItemProps) => {
 					</div>
 
 					<div className='mt-1 flex text-sm'>
-						<p className='text-gray-500'>
+						<p className='text-gray-500 dark:text-gray-300'>
 							{data.color.name}
 							<div
-								className='w-[20px] h-[20px] md:w-[40px] md:h-[40px] md:mt-2 border border-gray border-solid rounded-[100%]'
+								className='w-[20px] h-[20px] md:w-[40px] md:h-[40px]
+								md:mt-2 border border-slate-300 border-solid rounded-[100%]'
 								style={{ backgroundColor: data.color.value }}
 							/>
 						</p>
 
-						<p className='ml-4 border-l border-gray-200 pl-4 text-gray-500'>{data.size.name}</p>
+						<p
+							className='ml-4 border-l border-gray-200 pl-4
+						 text-gray-500 dark:text-gray-300'
+						>
+							{data.size.name}
+						</p>
 					</div>
 					<Currency value={data.price} />
 				</div>
