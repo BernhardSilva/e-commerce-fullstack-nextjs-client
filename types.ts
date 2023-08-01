@@ -8,6 +8,13 @@ export interface Product {
 	size: Size;
 	color: Color;
 	images: Image[];
+	stock: Stock[];
+}
+
+export interface Stock {
+	id: string;
+	idProduct: string;
+	quantity: number;
 }
 export interface Category {
 	id: string;

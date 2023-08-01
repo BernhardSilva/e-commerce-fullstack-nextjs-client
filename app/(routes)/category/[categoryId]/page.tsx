@@ -29,7 +29,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
 	const sizes = await getSizes();
 	const colors = await getColors();
 	const category = await getCategory(params.categoryId);
-	
+
 	return (
 		<div>
 			<Container>
@@ -39,12 +39,14 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
 						<MobileFilters sizes={sizes} colors={colors} />
 						<div className='hidden lg:block'>
 							<Filter valueKey='sizeId' name='Sizes' data={sizes} />
+						</div>
+						<div className='hidden lg:block'>
 							<Filter valueKey='colorId' name='Colors' data={colors} />
 						</div>
 					</div>
 					<div className='mt-6 lg:col-span-4 lg:mt-0'>
 						{products.length === 0 && <NoResults />}
-						<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+						<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4'>
 							{products.map((item) => (
 								<ProductCard key={item.id} item={item} />
 							))}

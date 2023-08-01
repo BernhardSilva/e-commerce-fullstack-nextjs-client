@@ -22,13 +22,13 @@ export const NavbarActions = () => {
 
 	return (
 		<div className='ml-auto flex items-center gap-x-4'>
-			<InputSearch/>
+			<InputSearch />
 			<CustomButton
 				onClick={() => router.push('/cart')}
 				className='flex items-center rounded-full dark:border dark:border-gray-200 px-4 py-2'
 			>
 				<ShoppingBag size={20} />
-				<span className='ml-2 text-sm font-medium'>{cart.items.length}</span>
+				<span className='ml-2 text-sm font-medium'>{cart.quantityItemSum()}</span>
 			</CustomButton>
 			<ThemeToggle />
 		</div>

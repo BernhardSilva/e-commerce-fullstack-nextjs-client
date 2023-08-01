@@ -36,9 +36,12 @@ const ProductCard = ({ item }: ProductCardProps) => {
 		cart.addItem(item);
 	};
 	return (
-		<div onClick={handleClick} className='group cursor-pointer rounded-xl border p-3 space-y-4 dark:border-slate-800'>
+		<div
+			onClick={handleClick}
+			className='group bg-slate-100 dark:bg-slate-900 cursor-pointer rounded-xl border p-3 space-y-4 dark:border-slate-800'
+		>
 			{/* Images and actions */}
-			<div className='aspect-square rounded-xl bg-gray-100 relative'>
+			<div className='aspect-square rounded-xl relative'>
 				<Image
 					src={item?.images?.[0]?.url}
 					alt={item?.images?.[0]?.url}
