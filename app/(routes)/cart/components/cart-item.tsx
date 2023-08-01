@@ -49,21 +49,21 @@ const CartItem = ({ data }: CartItemProps) => {
 					</div>
 
 					<div className='mt-1 flex text-sm'>
-						<p className='text-gray-500 dark:text-gray-300'>
+						<div className='text-gray-500 dark:text-gray-300'>
 							{data.color.name}
 							<div
 								className='w-[20px] h-[20px] md:w-[40px] md:h-[40px]
 								md:mt-2 border border-slate-300 border-solid rounded-[100%]'
 								style={{ backgroundColor: data.color.value }}
 							/>
-						</p>
+						</div>
 
-						<p
+						<div
 							className='ml-4 border-l border-slate-200 dark:border-slate-800 pl-4
 						 text-gray-500 dark:text-gray-300'
 						>
 							{data.size.name}
-						</p>
+						</div>
 						<div className='flex place-items-center justify-center ml-[15%]'>
 							<Button
 								variant='default'

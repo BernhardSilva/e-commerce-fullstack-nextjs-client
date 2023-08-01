@@ -24,9 +24,9 @@ const Info = ({ data }: InfoProps) => {
 			<h1 className='text-3xl font-bold'>{data.name}</h1>
 			<code className='mt-3 flex items-center gap-x-2' dangerouslySetInnerHTML={{ __html: data.description }} />
 			<div className='mt-3 flex items-end justify-between'>
-				<p className='text-2xl'>
+				<div className='text-2xl'>
 					<Currency value={data?.price} />
-				</p>
+				</div>
 			</div>
 			<hr className='my-4' />
 			<div className='flex flex-col gap-y-6'>
