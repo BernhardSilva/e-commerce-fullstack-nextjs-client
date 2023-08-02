@@ -23,7 +23,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 		}
 	});
 
-	const res = await fetch(url, { cache: 'no-store', method: 'GET' });
+	const res = await fetch(url, { cache: 'no-store', method: 'GET', headers: { 'Content-Type': 'text/plain' } });
 	return res.json();
 };
 
