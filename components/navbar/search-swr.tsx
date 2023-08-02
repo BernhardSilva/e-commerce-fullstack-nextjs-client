@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import InputSearch from '../ui/input-search';
+import toast from 'react-hot-toast';
 
 interface Product {
 	id: string;
@@ -24,7 +25,7 @@ const SearchPage = () => {
 			const response = await getProducts({ productName: query });
 			return response;
 		} catch (error) {
-			console.log('🚀esponse:', error);
+			toast.error('An error occurred while searching for products');
 		}
 	};
 
@@ -100,8 +101,14 @@ const SearchPage = () => {
 						{products?.map((item, index) => (
 							<ul
 								className={`text-white px-4 py-2 cursor-pointer hover:bg-slate-800 ${
-									index === products.length - 1 ? 'rounded-b-xl rounded-t-none' : index === 0 ? 'rounded-t-xl' : ''
-								}`}
+									index === products.length - 1
+										? 'rounded-b-xl rounded-t-none hover:rounded-t-none'
+										: products.length === 1
+										? 'rounded-xl hover:rounded-xl'
+										: index === 0
+										? 'rounded-t-xl rounded-b-none hover:rounded-b-none'
+										: ''
+								} `}
 								key={item.id}
 								onClick={() => handleSelectProduct(item.id)}
 							>
