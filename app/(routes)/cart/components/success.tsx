@@ -16,7 +16,6 @@ const SuccessPage = () => {
 				colors={['#ffce00', '#ff6b6b', '#b967ff', '#4cb1f7']}
 				recycle={false}
 				run={true}
-				onConfettiComplete={() => console.log('Confetti finished!')}
 			/>
 		</div>
 	);

@@ -51,11 +51,7 @@ const Summary = () => {
 			setLoading(false);
 		}
 	};
-
-	// if (searchParams.get('success')) {
-	// 	return;
-	// }
-
+	
 	return (
 		<>
 
