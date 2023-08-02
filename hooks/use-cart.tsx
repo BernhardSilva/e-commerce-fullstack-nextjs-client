@@ -43,7 +43,7 @@ const useCart = create(
 					toast.success('Item added to cart!');
 				}
 			},
-			//substractItem -1 quantity
+			//addOrSubstractItem add +1 or -1 quantity
 			addOrSubstractItem: (id: string, quantity: number) => {
 				const items = get().items;
 				const existingItem = items.find((item) => item.id === id);

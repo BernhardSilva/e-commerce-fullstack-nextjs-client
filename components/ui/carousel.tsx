@@ -65,24 +65,24 @@ export const Carousel = (props: Props) => {
 
 	return (
 		<>
-			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={currentImage.id}>
+			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={currentImage?.id}>
 				<div
 					style={{
-						backgroundImage: `url(${currentImage.imageUrl})`
+						backgroundImage: `url(${currentImage?.imageUrl})`
 					}}
 					className={`rounded-xl relative aspect-square sm:aspect-[2.6/2]
 					md:aspect-[6.4/2] lg:aspect-[8.8/2] overflow-hidden bg-cover
 					brightness-125 dark:brightness-110`}
 				>
 					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>
-						{currentImage.label && (
+						{currentImage?.label && (
 							<div className='flex justify-around mt-5'>
 								<div
 									className='border border-black bg-slate-50 bg-opacity-30
 									dark:border-white dark:bg-slate-950 dark:bg-opacity-50
 									rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '
 								>
-									{currentImage.label}
+									{currentImage?.label}
 								</div>
 							</div>
 						)}

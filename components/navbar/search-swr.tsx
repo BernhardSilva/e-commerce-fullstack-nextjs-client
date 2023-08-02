@@ -1,11 +1,12 @@
 'use client';
 
 import getProducts from '@/actions/get-products';
+import { useDebounce } from '@/hooks/use-debounce';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 import useSWR from 'swr';
 import InputSearch from '../ui/input-search';
-import toast from 'react-hot-toast';
 
 interface Product {
 	id: string;
@@ -14,17 +15,18 @@ interface Product {
 
 const SearchPage = () => {
 	const [inputValue, setInputValue] = useState<string>('');
-	const [debouncedValue, setDebouncedValue] = useState<string>('');
 	const [products, setProducts] = useState<Product[]>();
 	const router = useRouter();
 	const searchResultsRef = useRef<HTMLDivElement>(null);
 	const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
+	const debouncedValue = useDebounce(inputValue);
 
-	const searchProducts = async (query: string) => {
+	const filterProducts = async (query: string) => {
 		try {
-			const response = await getProducts({ productName: query });
-			return response;
+			const products = await getProducts({ productName: query });
+			return products;
 		} catch (error) {
+			console.error(error);
 			toast.error('An error occurred while searching for products');
 		}
 	};
@@ -33,9 +35,8 @@ const SearchPage = () => {
 		setIsSearchResultsOpen(!isSearchResultsOpen);
 	};
 
-	const { data: productData, isValidating } = useSWR(debouncedValue ?? null, searchProducts);
+	const { data: productData, isValidating } = useSWR(debouncedValue ?? null, filterProducts);
 
-	// EFFECTS: Set Data
 	useEffect(() => {
 		// If search is active, set products to search results
 		if (debouncedValue.length > 0) {
@@ -53,17 +54,6 @@ const SearchPage = () => {
 			setProducts([]);
 		}
 	}, [productData, debouncedValue]);
-
-	// EFFECT: Debounce Input Value
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setDebouncedValue(inputValue);
-		}, 500);
-
-		return () => {
-			clearTimeout(timer);
-		};
-	}, [inputValue]);
 
 	const handleSelectProduct = (id: string) => {
 		router.push(`/product/${id}`);

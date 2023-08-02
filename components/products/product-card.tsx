@@ -60,10 +60,10 @@ const ProductCard = ({ item }: ProductCardProps) => {
 			</div>
 			{/* Desc */}
 			<div>
-				<p className='font-semibold text-lg'>{item.name}</p>
+				<p className='font-semibold text-lg'>{item?.name}</p>
 			</div>
 			<div>
-				<p className='text-sm text-gray-500'>{item.category.name}</p>
+				<p className='text-sm text-gray-500'>{item?.category?.name}</p>
 			</div>
 			{/* Price */}
 			<div>
