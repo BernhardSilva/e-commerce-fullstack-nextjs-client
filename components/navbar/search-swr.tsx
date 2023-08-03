@@ -82,28 +82,30 @@ const SearchPage = () => {
 			<InputSearch inputValue={inputValue} setInputValue={setInputValue} isHandling={isValidating} />
 
 			<div
-				className={`absolute inset-x-0 z-50 bg-black opacity-80 rounded-t-xl rounded-b-xl
+				className={`absolute inset-x-0 z-50 bg-black opacity-80 rounded-t-xl rounded-b-xl w-[225px]
                  dark:bg-slate-700 text-white ${isSearchResultsOpen ? '' : 'hidden'}`}
 				ref={searchResultsRef}
+				style={{ transform: 'translateY(-8%)' }}
 			>
 				{inputValue !== '' && (
-					<div>
+					<div className=''>
 						{products?.map((item, index) => (
-							<ul
-								className={`text-white px-4 py-2 cursor-pointer hover:bg-slate-800 ${
-									index === products.length - 1
-										? 'rounded-b-xl rounded-t-none hover:rounded-t-none'
-										: products.length === 1
-										? 'rounded-xl hover:rounded-xl'
-										: index === 0
-										? 'rounded-t-xl rounded-b-none hover:rounded-b-none'
-										: ''
-								} `}
-								key={item.id}
-								onClick={() => handleSelectProduct(item.id)}
-							>
-								{item.name}
-							</ul>
+                        <ul
+                            className={`text-white px-4 py-2 cursor-pointer hover:bg-slate-800
+                                    w-[225px] h-max-[60px] grid place-items-center justify-center
+                                    ${index === products.length - 1 && products.length > 1
+                                    ? 'rounded-b-xl rounded-t-none hover:rounded-t-none'
+                                    : index === 0 && products.length > 1
+                                    ? 'rounded-t-xl rounded-b-none hover:rounded-b-none'
+                                    : products.length === 1
+                                    ? 'rounded-xl hover-rounded-xl'
+                                    : ''
+                            } `}
+                            key={item.id}
+                            onClick={() => handleSelectProduct(item.id)}
+                        >
+                            {item.name.length > 45 ? `${item.name.slice(0, 45)}...` : item.name}
+                        </ul>
 						))}
 					</div>
 				)}
