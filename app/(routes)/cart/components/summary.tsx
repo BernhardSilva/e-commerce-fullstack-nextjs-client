@@ -51,12 +51,11 @@ const Summary = () => {
 			setLoading(false);
 		}
 	};
-	
+
 	return (
 		<>
-
 			<div className='mt-16 rounded-lg bg-slate-100 dark:bg-slate-900  px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8'>
-			{searchParams.get('success') && <SuccessPage />}
+				{searchParams.get('success') && <SuccessPage />}
 				<h2 className='text-lg font-medium text-gray-900 dark:text-gray-100'>Order summary</h2>
 				<div className='mt-6 space-y-4'>
 					<div className='flex items-center justify-between border-t border-slate-800 pt-4'>
@@ -67,7 +66,7 @@ const Summary = () => {
 				<CustomButton
 					onClick={onCheckout}
 					disabled={loading || items.length === 0}
-					className={`w-full mt-6 dark:border dark:border-slate-700 dark:hover:bg-slate-500`}
+					className={`w-full mt-6 dark:border dark:border-slate-700 ${loading &&'dark:hover:bg-slate-500'}`}
 				>
 					Checkout
 				</CustomButton>

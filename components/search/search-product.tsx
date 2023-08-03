@@ -7,15 +7,16 @@ import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import useSWR from 'swr';
 import InputSearch from '../ui/input-search';
+import SearchProductItem from './search-product-item';
 
-interface Product {
+export interface SearchProductProps {
 	id: string;
 	name: string;
 }
 
-const SearchPage = () => {
+const SearchProduct = () => {
 	const [inputValue, setInputValue] = useState<string>('');
-	const [products, setProducts] = useState<Product[]>();
+	const [products, setProducts] = useState<SearchProductProps[]>();
 	const router = useRouter();
 	const searchResultsRef = useRef<HTMLDivElement>(null);
 	const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
@@ -29,6 +30,11 @@ const SearchPage = () => {
 			console.error(error);
 			toast.error('An error occurred while searching for products');
 		}
+	};
+
+	const cleanSearchResults = () => {
+		setProducts([]);
+		setInputValue('');
 	};
 
 	const handleSearchResultsOpen = () => {
@@ -57,16 +63,14 @@ const SearchPage = () => {
 
 	const handleSelectProduct = (id: string) => {
 		router.push(`/product/${id}`);
-		setProducts([]);
-		setInputValue('');
+		cleanSearchResults();
 	};
 
 	useEffect(() => {
 		const handleClickOutside = (event: any) => {
 			if (isSearchResultsOpen && searchResultsRef.current && !searchResultsRef.current.contains(event.target)) {
 				setIsSearchResultsOpen(false);
-				setProducts([]);
-				setInputValue('');
+				cleanSearchResults();
 			}
 		};
 
@@ -87,31 +91,10 @@ const SearchPage = () => {
 				ref={searchResultsRef}
 				style={{ transform: 'translateY(-8%)' }}
 			>
-				{inputValue !== '' && (
-					<div className=''>
-						{products?.map((item, index) => (
-                        <ul
-                            className={`text-white px-4 py-2 cursor-pointer hover:bg-slate-800
-                                    w-[225px] h-max-[60px] grid place-items-center justify-center
-                                    ${index === products.length - 1 && products.length > 1
-                                    ? 'rounded-b-xl rounded-t-none hover:rounded-t-none'
-                                    : index === 0 && products.length > 1
-                                    ? 'rounded-t-xl rounded-b-none hover:rounded-b-none'
-                                    : products.length === 1
-                                    ? 'rounded-xl hover-rounded-xl'
-                                    : ''
-                            } `}
-                            key={item.id}
-                            onClick={() => handleSelectProduct(item.id)}
-                        >
-                            {item.name.length > 45 ? `${item.name.slice(0, 45)}...` : item.name}
-                        </ul>
-						))}
-					</div>
-				)}
+				{inputValue !== '' && <SearchProductItem products={products} handleSelectProduct={handleSelectProduct} />}
 			</div>
 		</div>
 	);
 };
 
-export default SearchPage;
+export default SearchProduct;

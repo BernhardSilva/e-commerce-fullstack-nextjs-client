@@ -5,7 +5,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/stores/${process.env.NEXT_PUBLIC
 const getStore = async (): Promise<Store> => {
 	const res = await fetch(URL, {
 		next: {
-			revalidate: 3600 //name of the store revalidate each 3600s (1 hour)
+			revalidate: 10 //name of the store revalidate each 30s
 		}
 	});
 

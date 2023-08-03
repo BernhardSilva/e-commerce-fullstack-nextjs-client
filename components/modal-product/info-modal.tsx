@@ -5,8 +5,8 @@ import { ShoppingCart } from 'lucide-react';
 import Currency from '@/components/ui/currency';
 
 import { Product } from '@/types';
-import { Button } from './ui/button';
 import useCart from '@/hooks/use-cart';
+import { Button } from '../ui/button';
 
 interface InfoProps {
 	data: Product;
@@ -43,7 +43,9 @@ const Info = ({ data }: InfoProps) => {
 				</div>
 			</div>
 			<div className='mt-10 flex items-center gap-x-3'>
-				<Button onClick={onAddToCart} className='flex items-center gap-x-2'>
+				<Button onClick={onAddToCart} className='flex items-center gap-x-2 
+				bg-black border 
+				border-white text-white hover:bg-green-500 hover:scale-105'>
 					Add To Cart
 					<ShoppingCart size={20} />
 				</Button>

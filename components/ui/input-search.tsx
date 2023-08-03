@@ -17,7 +17,7 @@ const InputSearch = ({ inputValue, setInputValue, isHandling }: Props) => {
 				onChange={(e) => {
 					setInputValue(e.target.value);
 				}}
-				placeholder='Search products'
+				placeholder='Search products...'
 				className='text-base'
 			/>
 			{isHandling && (

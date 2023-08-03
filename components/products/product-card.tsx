@@ -38,7 +38,8 @@ const ProductCard = ({ item }: ProductCardProps) => {
 	return (
 		<div
 			onClick={handleClick}
-			className='group bg-slate-100 dark:bg-slate-900 cursor-pointer rounded-xl border p-3 space-y-4 dark:border-slate-800'
+			className='group bg-slate-100  cursor-pointer rounded-xl border p-3 space-y-4
+			dark:bg-slate-900 dark:border-slate-800'
 		>
 			{/* Images and actions */}
 			<div className='aspect-square rounded-xl relative'>
@@ -50,10 +51,12 @@ const ProductCard = ({ item }: ProductCardProps) => {
 				/>
 				<div className='opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5'>
 					<div className='flex gap-x-6 justify-center'>
-						<IconButton onClick={onPreview} icon={<Expand size={20} className='text-black dark:text-white' />} />
+						<IconButton onClick={onPreview}
+						icon={<Expand size={20} className='text-white hover:text-green-500
+						' />} />
 						<IconButton
 							onClick={onAddToCart}
-							icon={<ShoppingCart size={20} className='text-black dark:text-white' />}
+							icon={<ShoppingCart size={20} className='text-white hover:text-green-500' />}
 						/>
 					</div>
 				</div>

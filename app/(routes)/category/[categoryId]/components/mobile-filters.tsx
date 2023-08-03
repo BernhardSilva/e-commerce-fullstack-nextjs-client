@@ -23,7 +23,9 @@ const MobileFilters = ({ sizes, colors }: MobileFiltersProps) => {
 
 	return (
 		<>
-			<CustomButton onClick={onOpen} className='flex items-center gap-x-2 lg:hidden dark:border border-white'>
+			<CustomButton onClick={onOpen} 
+			className='flex items-center gap-x-2 lg:hidden 
+			dark:border border-white hover:text-green-500 hover:border-green-500'>
 				Filters
 				<Search size={20} />
 			</CustomButton>
@@ -40,7 +42,7 @@ const MobileFilters = ({ sizes, colors }: MobileFiltersProps) => {
 					>
 						{/* Close button */}
 						<div className='flex items-center justify-end px-4'>
-							<IconButton icon={<X size={15} />} onClick={onClose} />
+							<IconButton icon={<X size={15} color='white'/>} onClick={onClose}/>
 						</div>
 
 						<div className='p-4'>
