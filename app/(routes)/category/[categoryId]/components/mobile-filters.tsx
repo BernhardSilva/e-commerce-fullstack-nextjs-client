@@ -25,7 +25,7 @@ const MobileFilters = ({ sizes, colors }: MobileFiltersProps) => {
 		<>
 			<CustomButton onClick={onOpen} 
 			className='flex items-center gap-x-2 lg:hidden 
-			dark:border border-white hover:text-green-500 hover:border-green-500'>
+			dark:border border-white hover:border-green-500'>
 				Filters
 				<Search size={20} />
 			</CustomButton>

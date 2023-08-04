@@ -5,13 +5,20 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { Category } from '@/types';
+import useCategory from '@/hooks/use-category';
+import { useEffect } from 'react';
 
 interface MainNavProps {
 	data: Category[];
 }
 
-const MainNav = ({ data }: MainNavProps) => {
+const NavbarLinks = ({ data }: MainNavProps) => {
 	const pathname = usePathname();
+	const { addCategories } = useCategory();
+
+	useEffect(() => {
+		addCategories(data);
+	}, [data, addCategories]);
 
 	const routes = data.map((route) => ({
 		href: `/category/${route.id}`,
@@ -20,21 +27,21 @@ const MainNav = ({ data }: MainNavProps) => {
 	}));
 
 	return (
-		<nav className='mx-6 flex items-center space-x-4 lg:space-x-6'>
+		<div className='mx-6 flex items-center space-x-4 lg:space-x-6'>
 			{routes.map((route) => (
 				<Link
 					key={route.href}
 					href={route.href}
 					className={cn(
-						'text-sm font-medium transition-colors hover:text-black dark:hover:text-white',
-						route.active ? 'font-semibold text-black dark:text-white' : 'text-neutral-500'
+						'text-sm font-medium transition-colors hover:text-green-500 dark:hover:text-green-500 hover:text-base',
+						route.active ? 'font-semibold text-black dark:text-white ' : 'text-neutral-500 '
 					)}
 				>
 					{route.label}
 				</Link>
 			))}
-		</nav>
+		</div>
 	);
 };
 
-export default MainNav;
+export default NavbarLinks;

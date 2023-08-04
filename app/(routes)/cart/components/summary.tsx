@@ -12,9 +12,8 @@ import SuccessPage from './success';
 
 const Summary = () => {
 	const searchParams = useSearchParams();
-	const items = useCart((state) => state.items);
-	const removeAll = useCart((state) => state.removeAll);
-	const totalSum = useCart((state) => state.totalPriceCartSum());
+	const { items, removeAll, totalPriceCartSum } = useCart();
+	const totalSum = totalPriceCartSum();
 
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
@@ -66,7 +65,9 @@ const Summary = () => {
 				<CustomButton
 					onClick={onCheckout}
 					disabled={loading || items.length === 0}
-					className={`w-full mt-6 dark:border dark:border-slate-700 ${loading &&'dark:hover:bg-slate-500'}`}
+					className={`w-full mt-6 dark:border hover:border-2 dark:border-slate-700 ${
+						loading && 'dark:hover:bg-slate-500'
+					}`}
 				>
 					Checkout
 				</CustomButton>

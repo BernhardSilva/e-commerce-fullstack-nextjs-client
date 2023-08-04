@@ -5,9 +5,9 @@ const nextConfig = {
 		defaultLocale: 'en'
 	},
 	reactStrictMode: true,
-	compiler: {
-		removeConsole: process.env.NODE_ENV === 'production'
-	},
+	// compiler: {
+	// 	removeConsole: process.env.NODE_ENV === 'production'
+	// },
 	images: {
 		domains: ['res.cloudinary.com']
 	}

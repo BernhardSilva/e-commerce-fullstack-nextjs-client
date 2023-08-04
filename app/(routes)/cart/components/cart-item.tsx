@@ -1,11 +1,12 @@
-import { MinusIcon, PlusIcon, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Image from 'next/image';
 
+import { Button } from '@/components/ui/button';
 import Currency from '@/components/ui/currency';
 import IconButton from '@/components/ui/icon-button';
 import useCart from '@/hooks/use-cart';
+import { cn } from '@/lib/utils';
 import { Product } from '@/types';
-import { Button } from '@/components/ui/button';
 
 interface CartItemProps {
 	data: Product;
@@ -13,6 +14,9 @@ interface CartItemProps {
 
 const CartItem = ({ data }: CartItemProps) => {
 	const cart = useCart();
+
+	const quantityItem = cart.quantityItem(data.id);
+	const totalPriceItem = cart.totalPricePerItem(data.id);
 
 	const onRemove = () => {
 		cart.removeItem(data.id);
@@ -28,17 +32,18 @@ const CartItem = ({ data }: CartItemProps) => {
 			</div>
 			<div className='relative ml-4 flex flex-1 flex-col justify-between sm:ml-6'>
 				<div className='absolute z-10 right-0 top-0'>
-					<IconButton onClick={onRemove} icon={<X size={15} />} />
+					<IconButton onClick={onRemove} icon={<X size={15} color='white' />} />
 				</div>
 				<div className='inline-flex mt-2'>
 					<Currency value={data.price} />
 					<span className='ml-2'>u</span>
 				</div>
+				<hr className='w-[50%]' />
 				<div className='inline-flex'>
-					<Currency value={cart.totalPricePerItem(data.id)} />
-					<span className='ml-2'>
-						{cart.quantityItem(data.id)}
-						<span className='ml-1'>u</span>
+					<Currency value={totalPriceItem} />
+					<span className={cn(`ml-2 font-light`, quantityItem > 1 && 'text-green-500 font-bold')}>
+						{quantityItem}
+						<span className='ml-1 font-light'>u</span>
 					</span>
 				</div>
 				<hr />
@@ -64,25 +69,27 @@ const CartItem = ({ data }: CartItemProps) => {
 						>
 							{data.size.name}
 						</div>
-						<div className='flex place-items-center justify-center ml-[15%]'>
+						<div className='absolute right-0 bottom-0'>
 							<Button
-								variant='default'
 								size='sm'
-								className='ml-2 h-8 w-8 rounded-[100%] hover:scale-110'
+								className='ml-2 h-8 w-8 rounded-[100%] 
+								 bg-black  dark:border dark:border-white text-white 
+								 hover:bg-black hover:border-2 hover:border-green-500 dark:hover:border-green-500 hover:scale-110'
 								disabled={cart.quantityItem(data.id) === 20}
 								onClick={() => cart.addOrSubstractItem(data.id, 1)}
 							>
-								<PlusIcon className='h-5 w-5' />
+								+
 							</Button>
 
 							<Button
 								disabled={cart.quantityItem(data.id) <= 1}
-								variant='destructive'
 								size='sm'
-								className='ml-2 h-8 w-8 rounded-[100%] hover:scale-110'
+								className='ml-2 h-8 w-8 rounded-[100%] 
+								 bg-black dark:border hover:border-2 dark:border-white text-white 
+								 hover:bg-black hover:border-red-500 dark:hover:border-red-500 hover:scale-110'
 								onClick={() => cart.addOrSubstractItem(data.id, -1)}
 							>
-								<MinusIcon className='h-5 w-5' />
+								-
 							</Button>
 						</div>
 					</div>

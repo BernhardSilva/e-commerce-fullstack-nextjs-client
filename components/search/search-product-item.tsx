@@ -1,30 +1,48 @@
-import { SearchProductProps } from './search-product';
+import { Product } from '@/types';
+import Image from 'next/image';
 
 interface SearchProductItemProps {
-	products: SearchProductProps[] | undefined;
+	products: Product[] | undefined;
 	handleSelectProduct: (id: string) => void;
 }
 
 const SearchProductItem = ({ products, handleSelectProduct }: SearchProductItemProps) => {
 	return (
 		<div>
-			{products?.map((item, index) => (
+			{products?.map((product, index) => (
 				<ul
-					className={`text-white px-4 py-2 cursor-pointer hover:bg-slate-800
-                                    w-[225px] h-max-[60px] grid place-items-center justify-center
+					className={`text-white px-4 py-2 cursor-pointer hover:bg-green-800 dark:hover:bg-green-700
+                                    w-full h-max-[60px] grid justify-start
                                     ${
-                                        index === products.length - 1 && products.length > 1
-                                        ? 'rounded-b-xl rounded-t-none hover:rounded-t-none'
-                                        : index === 0 && products.length > 1
-                                        ? 'rounded-t-xl rounded-b-none hover:rounded-b-none'
-                                        : products.length === 1
-                                        ? 'rounded-xl hover-rounded-xl'
-                                        : ''
-																		} `}
-					key={item.id}
-					onClick={() => handleSelectProduct(item.id)}
+										//position 0 of the list
+										index === 0 && products?.length > 1
+										? 'rounded-t-xl rounded-b-none hover:rounded-b-none'
+										//only 1 product in the list
+										: products?.length === 1
+										? 'rounded-xl hover-rounded-xl'
+										//last position of the list
+										: index === products?.length - 1 && products?.length > 1
+										? 'rounded-b-xl rounded-t-none hover:rounded-t-none'
+										//middle positions of the list
+										:''
+									} `}
+					key={product?.id}
+					onClick={() => handleSelectProduct(product?.id)}
 				>
-					{item.name.length > 45 ? `${item.name.slice(0, 45)}...` : item.name}
+					<div className='inline-flex'>
+						<div className='grid items-center'>
+							<Image
+								src={product?.images[0]?.url}
+								alt={product?.images[0].id}
+								className='w-[30px] h-[30px] rounded-full'
+								width={30}
+								height={30}
+							/>
+						</div>
+						<div className='ml-3'>
+							{product?.name?.length > 45 ? `${product?.name?.slice(0, 45)}..` : product?.name}
+						</div>
+					</div>
 				</ul>
 			))}
 		</div>

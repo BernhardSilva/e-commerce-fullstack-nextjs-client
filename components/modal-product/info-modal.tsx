@@ -44,8 +44,8 @@ const Info = ({ data }: InfoProps) => {
 			</div>
 			<div className='mt-10 flex items-center gap-x-3'>
 				<Button onClick={onAddToCart} className='flex items-center gap-x-2 
-				bg-black border 
-				border-white text-white hover:bg-green-500 hover:scale-105'>
+				bg-black border hover:border-2 
+				border-white text-white hover:scale-105 hover:border-green-500 hover:bg-black'>
 					Add To Cart
 					<ShoppingCart size={20} />
 				</Button>

@@ -2,21 +2,24 @@
 
 import getProducts from '@/actions/get-products';
 import { useDebounce } from '@/hooks/use-debounce';
+import { Product } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import useSWR from 'swr';
 import InputSearch from '../ui/input-search';
 import SearchProductItem from './search-product-item';
+import { cn } from '@/lib/utils';
 
-export interface SearchProductProps {
-	id: string;
-	name: string;
+interface SearchProductProps {
+	className?: string;
+	inputClassName?: string;
+	dropDownClassName?: string;
 }
 
-const SearchProduct = () => {
+const SearchProduct = ({ className, inputClassName, dropDownClassName }: SearchProductProps) => {
 	const [inputValue, setInputValue] = useState<string>('');
-	const [products, setProducts] = useState<SearchProductProps[]>();
+	const [products, setProducts] = useState<Product[]>();
 	const router = useRouter();
 	const searchResultsRef = useRef<HTMLDivElement>(null);
 	const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
@@ -82,18 +85,28 @@ const SearchProduct = () => {
 	}, [isSearchResultsOpen]);
 
 	return (
-		<div className='relative mb-2.5' onClick={handleSearchResultsOpen}>
-			<InputSearch inputValue={inputValue} setInputValue={setInputValue} isHandling={isValidating} />
+		<>
+			<div className={cn(`relative mb-2.5`, className)} onClick={handleSearchResultsOpen}>
+				<InputSearch
+					inputValue={inputValue}
+					setInputValue={setInputValue}
+					isHandling={isValidating}
+					className={inputClassName}
+				/>
 
-			<div
-				className={`absolute inset-x-0 z-50 bg-black opacity-80 rounded-t-xl rounded-b-xl w-[225px]
-                 dark:bg-slate-700 text-white ${isSearchResultsOpen ? '' : 'hidden'}`}
-				ref={searchResultsRef}
-				style={{ transform: 'translateY(-8%)' }}
-			>
-				{inputValue !== '' && <SearchProductItem products={products} handleSelectProduct={handleSelectProduct} />}
+				<div
+					className={cn(
+						dropDownClassName
+							? dropDownClassName
+							: `absolute z-50 bg-black opacity-90 rounded-t-xl rounded-b-xl translate-y-[-5%]
+				dark:bg-slate-800 text-white ${isSearchResultsOpen ? '' : 'hidden'}`
+					)}
+					ref={searchResultsRef}
+				>
+					{inputValue !== '' && <SearchProductItem products={products} handleSelectProduct={handleSelectProduct} />}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
