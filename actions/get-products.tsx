@@ -29,7 +29,6 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 		headers: {
 			'Content-Type': 'text/plain',
 			'Accept': '*/*',
-			'Access-Control-Allow-Origin': '*'
 		}
 	});
 	return res.json();
