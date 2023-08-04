@@ -30,6 +30,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 			'Content-Type': 'text/plain',
 			'Accept': '*/*',
 			'Accept-Language': 'en-US,en',
+			'Access-Control-Allow-Origin': '*',
 			'Host': `${process.env.NEXT_HOST_API}`,
 			'Origin': `${process.env.NEXT_ORIGIN_API}`,
 			'Referer': `${process.env.NEXT_ORIGIN_API}/`,
