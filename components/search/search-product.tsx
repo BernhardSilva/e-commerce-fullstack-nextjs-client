@@ -27,7 +27,7 @@ const SearchProduct = ({ className, inputClassName, dropDownClassName }: SearchP
 
 	const filterProducts = async (query: string) => {
 		try {
-			const products = await getProducts({ productName: query });
+			const products = await getProducts({ productName: query, isFeatured: true });
 			return products;
 		} catch (error) {
 			console.error(error);
