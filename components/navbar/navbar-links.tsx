@@ -13,7 +13,6 @@ interface MainNavProps {
 }
 
 const NavbarLinks = ({ data }: MainNavProps) => {
-	console.log("🚀 ~ file: navbar-links.tsx:16 ~ NavbarLinks ~ data:", data)
 	const pathname = usePathname();
 	const { addCategories } = useCategory();
 

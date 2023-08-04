@@ -89,7 +89,8 @@ export const Carousel = (props: Props) => {
 
 						{props.showButtons && (
 							<button
-								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
+								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black 
+								bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
 								onClick={previous}
 							>
 								<ArrowBigLeftIcon />
@@ -98,7 +99,8 @@ export const Carousel = (props: Props) => {
 
 						{props.showButtons && (
 							<button
-								className='absolute sm:p-2 md:p-4 lg:p-5 mr-1 right-1 mt-5 border border-black bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
+								className='absolute sm:p-2 md:p-4 lg:p-5 mr-1 right-1 mt-5 border border-black 
+								bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
 								onClick={next}
 							>
 								<ArrowBigRightIcon />

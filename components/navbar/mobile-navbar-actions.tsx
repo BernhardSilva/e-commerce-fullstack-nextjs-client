@@ -21,9 +21,11 @@ export function MobileNavbarActions() {
 	const cart = useCart();
 	const cartQuantitySum = cart.quantityItemSum();
 	const { setTheme, theme } = useTheme();
+	console.log("🚀 ~ file: mobile-navbar-actions.tsx:24 ~ MobileNavbarActions ~ theme:", theme)
 	const { categories } = useCategory();
 
 	const handleClick = () => {
+
 		setTheme(theme === 'dark' ? 'light' : 'dark');
 	};
 

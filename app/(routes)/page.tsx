@@ -1,7 +1,7 @@
 import getBillboards from '@/actions/get-billboards';
 import getProducts from '@/actions/get-products';
 import { Billboards } from '@/components/billboards';
-import ProductList from '@/components/products/product-list';
+import ProductList from '@/components/product/product-list';
 import Container from '@/components/ui/container';
 
 const HomePage = async () => {

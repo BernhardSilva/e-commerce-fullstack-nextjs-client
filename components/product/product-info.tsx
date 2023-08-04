@@ -8,11 +8,11 @@ import { Product } from '@/types';
 import useCart from '@/hooks/use-cart';
 import { Button } from '../ui/button';
 
-interface InfoProps {
+interface ProductInfoProps {
 	data: Product;
 }
 
-const Info = ({ data }: InfoProps) => {
+const ProductInfo = ({ data }: ProductInfoProps) => {
 	const cart = useCart();
 
 	const onAddToCart = () => {
@@ -21,7 +21,7 @@ const Info = ({ data }: InfoProps) => {
 
 	return (
 		<div>
-			<h1 className='text-3xl font-bold'>{data.name}</h1>
+			<h1 className='text-3xl font-bold'>{data?.name}</h1>
 			<code className='mt-3 flex items-center gap-x-2' dangerouslySetInnerHTML={{ __html: data.description }} />
 			<div className='mt-3 flex items-end justify-between'>
 				<div className='text-2xl'>
@@ -41,11 +41,18 @@ const Info = ({ data }: InfoProps) => {
 						style={{ backgroundColor: data?.color?.value }}
 					/>
 				</div>
+				<div className='flex items-center gap-x-4'>
+					<h3 className='font-semibold'>Stock:</h3>
+					<div>{data?.stock[0]?.quantity}</div>
+				</div>
 			</div>
 			<div className='mt-10 flex items-center gap-x-3'>
-				<Button onClick={onAddToCart} className='flex items-center gap-x-2 
+				<Button
+					onClick={onAddToCart}
+					className='flex items-center gap-x-2 
 				bg-black border hover:border-2 
-				border-white text-white hover:scale-105 hover:border-green-500 hover:bg-black'>
+				border-white text-white hover:scale-105 hover:border-green-500 hover:bg-black'
+				>
 					Add To Cart
 					<ShoppingCart size={20} />
 				</Button>
@@ -54,4 +61,4 @@ const Info = ({ data }: InfoProps) => {
 	);
 };
 
-export default Info;
+export default ProductInfo;

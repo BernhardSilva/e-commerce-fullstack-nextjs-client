@@ -9,7 +9,6 @@ import SearchProduct from '../search/search-product';
 
 const Navbar = async () => {
 	const categories = await getCategories();
-	console.log("🚀 ~ file: index.tsx:12 ~ Navbar ~ categories:", categories)
 	const store = await getStore();
 
 	return (

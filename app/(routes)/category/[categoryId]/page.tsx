@@ -3,11 +3,12 @@ import getColors from '@/actions/get-colors';
 import getProducts from '@/actions/get-products';
 import getSizes from '@/actions/get-sizes';
 import { Billboards } from '@/components/billboards';
-import ProductCard from '@/components/products/product-card';
+
 import Container from '@/components/ui/container';
 import NoResults from '@/components/ui/no-results';
 import Filter from './components/filter';
 import MobileFilters from './components/mobile-filters';
+import ProductCard from '@/components/product/product-card';
 
 interface CategoryPageProps {
 	params: {

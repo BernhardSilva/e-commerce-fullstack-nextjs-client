@@ -1,9 +1,9 @@
 'use client';
 
 import Gallery from '@/components/gallery';
-import Info from '@/components/modal-product/info-modal';
 import Modal from '@/components/ui/modal';
 import usePreviewModal from '@/hooks/use-preview-modal';
+import ProductInfo from '@/components/product/product-info';
 
 const PreviewModal = () => {
 	const { isOpen, onClose, data } = usePreviewModal();
@@ -25,7 +25,7 @@ const PreviewModal = () => {
 					<Gallery images={product.images} />
 				</div>
 				<div className='sm:col-span-8 lg:col-span-7'>
-					<Info data={product} />
+					<ProductInfo data={product} />
 				</div>
 			</div>
 		</Modal>
