@@ -23,25 +23,23 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 		}
 	});
 
-	// 'Origin': 'https://e-commerce-cms-client.vercel.app',
-	// 'Referer': 'https://e-commerce-cms-client.vercel.app/',
-	// ':authority': 'e-commerce-cms-admin.vercel.app',
-
-	// ':scheme': 'https',
-	// 'Accept': '*/*',
-	// 'Accept-Encoding': 'gzip, deflate, br',
-	// 'Origin': `${process.env.NEXT_ORIGIN_API}`,
-	// 'Referer': `${process.env.NEXT_REFERER_API}`,
-	// 'Sec-Fetch-Dest': 'empty',
-	// 'Sec-Fetch-Mode': 'cors',
-	// 'Sec-Fetch-Site': 'cross-site',
-	// 'Sec-Gpc': '1'
 	const res = await fetch(url, {
 		cache: 'no-store',
 		method: 'GET',
 		headers: {
 			'Content-Type': 'text/plain',
-			'Access-Control-Allow-Origin': '*',
+			'Accept': '*/*',
+			'Accept-Encoding': 'gzip, deflate, br',
+			'Accept-Language': 'en-US,en',
+			'Connection': 'keep-alive',
+			'Host': `${process.env.NEXT_HOST_API}`,
+			'Origin': `${process.env.NEXT_ORIGIN_API}`,
+			'Referer': `${process.env.NEXT_ORIGIN_API}/`,
+			'Sec-Fetch-Dest': 'empty',
+			'Sec-Fetch-Mode': 'cors',
+			'Sec-Fetch-Site': 'same-site',
+			'Sec-GPC': '1',
+			'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
 		}
 	});
 	return res.json();
