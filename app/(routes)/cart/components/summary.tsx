@@ -35,7 +35,7 @@ const Summary = () => {
 		try {
 			setLoading(true);
 			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_API_STORE}/checkout`,
+				`${process.env.NEXT_PUBLIC_API_URL}/${process.env.NEXT_PUBLIC_API_STORE}/checkout`,
 				{
 					items
 				}
