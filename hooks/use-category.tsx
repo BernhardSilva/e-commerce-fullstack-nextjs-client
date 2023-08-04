@@ -17,7 +17,7 @@ const useCategory = create(
 			}
 		}),
 		{
-			name: 'cart-storage',
+			name: 'category-storage',
 			storage: createJSONStorage(() => localStorage)
 		}
 	)

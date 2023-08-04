@@ -9,6 +9,7 @@ import SearchProduct from '../search/search-product';
 
 const Navbar = async () => {
 	const categories = await getCategories();
+	console.log("🚀 ~ file: index.tsx:12 ~ Navbar ~ categories:", categories)
 	const store = await getStore();
 
 	return (
@@ -17,7 +18,7 @@ const Navbar = async () => {
 				<nav className='px-4 sm:px-6 lg:px-8 h-16 grid grid-cols-3 w-full place-content-center'>
 					<div className='inline-flex items-center'>
 						<Link href='/' className='ml-4 flex lg:ml-0 gap-x-2'>
-							<p className='font-bold text-xl'>{store.name}</p>
+							<p className='font-bold text-xl'>{store?.name}</p>
 						</Link>
 						<div className='hidden lg:block'>
 							<NavbarLinks data={categories} />

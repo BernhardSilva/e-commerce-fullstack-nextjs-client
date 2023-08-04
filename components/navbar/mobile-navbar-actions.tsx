@@ -10,12 +10,11 @@ import {
 import { ArrowDown, Menu } from 'lucide-react';
 
 import useCart from '@/hooks/use-cart';
-import { ShoppingBag } from 'lucide-react';
+import useCategory from '@/hooks/use-category';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
-import { ThemeToggle } from '../ui/theme-toggle';
-import useCategory from '@/hooks/use-category';
 import MobileShoppingCartButton from '../ui/mobile-shopping-cart-button';
+import { ThemeToggle } from '../ui/theme-toggle';
 
 export function MobileNavbarActions() {
 	const router = useRouter();
@@ -49,7 +48,7 @@ export function MobileNavbarActions() {
 						{categories.map((item) => (
 							<DropdownMenuItem
 								key={item.id}
-								onClick={() => router.push(`/category/${item.id}`)}
+								onClick={() => router.push(`/category/${item?.id}`)}
 								className='cursor-pointer'
 							>
 								{item.name}

@@ -37,9 +37,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 	// 'Sec-Fetch-Site': 'cross-site',
 	// 'Sec-Gpc': '1'
 	const res = await fetch(url, {
-		next: {
-			revalidate: 1
-		},
+		cache: 'no-store',
 		method: 'GET',
 		headers: {
 			'Content-Type': 'text/plain'
