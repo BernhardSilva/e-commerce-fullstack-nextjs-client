@@ -40,7 +40,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 		cache: 'no-store',
 		method: 'GET',
 		headers: {
-			'Content-Type': 'text/plain'
+			'Content-Type': 'text/plain',
+			'Access-Control-Allow-Origin': '*',
 		}
 	});
 	return res.json();
