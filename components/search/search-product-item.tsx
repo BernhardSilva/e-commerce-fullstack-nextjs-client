@@ -30,7 +30,7 @@ const SearchProductItem = ({ products, handleSelectProduct }: SearchProductItemP
 					onClick={() => handleSelectProduct(product?.id)}
 				>
 					<div className='inline-flex'>
-						<div className='grid items-center'>
+						<div className='grid items-center min-w-[30px]'>
 							<Image
 								src={product?.images[0]?.url}
 								alt={product?.images[0].id}
