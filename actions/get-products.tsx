@@ -29,15 +29,15 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 		headers: {
 			'Content-Type': 'text/plain',
 			'Accept': '*/*',
-			'Accept-Language': 'en-US,en',
+			// 'Accept-Language': 'en-US,en',
 			'Access-Control-Allow-Origin': '*',
-			'Host': `${process.env.NEXT_HOST_API}`,
-			'Origin': `${process.env.NEXT_ORIGIN_API}`,
-			'Referer': `${process.env.NEXT_ORIGIN_API}/`,
-			'Sec-Fetch-Dest': 'empty',
-			'Sec-Fetch-Mode': 'cors',
-			'Sec-Fetch-Site': 'same-site',
-			'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
+			// 'Host': `${process.env.NEXT_HOST_API}`,
+			// 'Origin': `${process.env.NEXT_ORIGIN_API}`,
+			// 'Referer': `${process.env.NEXT_ORIGIN_API}/`,
+			// 'Sec-Fetch-Dest': 'empty',
+			// 'Sec-Fetch-Mode': 'cors',
+			// 'Sec-Fetch-Site': 'same-site',
+			// 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
 		}
 	});
 	return res.json();
