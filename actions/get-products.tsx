@@ -23,7 +23,26 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 		}
 	});
 
-	const res = await fetch(url, { cache: 'no-store', method: 'GET', headers: { 'Content-Type': 'text/plain' } });
+	// 'Origin': 'https://e-commerce-cms-client.vercel.app',
+	// 'Referer': 'https://e-commerce-cms-client.vercel.app/',
+	// ':authority': 'e-commerce-cms-admin.vercel.app',
+
+	// ':scheme': 'https',
+	// 'Accept': '*/*',
+	// 'Accept-Encoding': 'gzip, deflate, br',
+	// 'Origin': `${process.env.NEXT_ORIGIN_API}`,
+	// 'Referer': `${process.env.NEXT_REFERER_API}`,
+	// 'Sec-Fetch-Dest': 'empty',
+	// 'Sec-Fetch-Mode': 'cors',
+	// 'Sec-Fetch-Site': 'cross-site',
+	// 'Sec-Gpc': '1'
+	const res = await fetch(url, {
+		cache: 'no-store',
+		method: 'GET',
+		headers: {
+			'Content-Type': 'text/plain'
+		}
+	});
 	return res.json();
 };
 
