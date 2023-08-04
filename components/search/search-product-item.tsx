@@ -30,7 +30,7 @@ const SearchProductItem = ({ products, handleSelectProduct }: SearchProductItemP
 					onClick={() => handleSelectProduct(product?.id)}
 				>
 					<div className='inline-flex'>
-						<div className='grid items-center'>
+						{/* <div className='grid items-center'>
 							<Image
 								src={product?.images[0]?.url}
 								alt={product?.images[0].id}
@@ -38,7 +38,7 @@ const SearchProductItem = ({ products, handleSelectProduct }: SearchProductItemP
 								width={30}
 								height={30}
 							/>
-						</div>
+						</div> */}
 						<div className='ml-3'>
 							{product?.name?.length > 45 ? `${product?.name?.slice(0, 45)}..` : product?.name}
 						</div>
