@@ -11,12 +11,15 @@ import { Button } from '../ui/button';
 import IconButton from '../ui/icon-button';
 import { useRouter } from 'next/navigation';
 import usePreviewModal from '@/hooks/use-preview-modal';
+import { useEffect, useState } from 'react';
 
 interface ProductInfoProps {
 	data: Product;
 }
 
 const ProductInfo = ({ data }: ProductInfoProps) => {
+	const [isMounted, setIsMounted] = useState(false);
+
 	const addItem = useCart((state) => state.addItem);
 	const removeItem = useCart((state) => state.removeItem);
 	const quantity = useCart((state) => state.quantityItem(data.id));
@@ -43,31 +46,39 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 		}
 	};
 
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+	if (!isMounted) return null;
+
 	return (
 		<div>
 			<h1 className='text-3xl font-bold'>{data?.name}</h1>
-			
-			<code className='mt-3 flex items-center bg-slate-100 dark:bg-slate-900 rounded-lg p-2' dangerouslySetInnerHTML={{ __html: data.description }} />
-			{/* <hr className='my-4' /> */}
+
+			<code
+				className='mt-3 flex items-center bg-slate-100 dark:bg-slate-900 rounded-lg p-2'
+				dangerouslySetInnerHTML={{ __html: data.description }}
+			/>
 			<div className='mt-3 flex items-end justify-between text-lg md:text-2xl bg-slate-100 dark:bg-slate-900 rounded-lg p-2'>
 				<div className=''>
 					<Currency value={data?.price} />
 				</div>
-				{/* <hr className='my-4' /> */}
 				<div className='inline-flex'>
 					{(quantity || quantity !== 0) && (
 						<>
 							<span className='font-light mr-1 hidden sm:block'>Total:</span>
 							<Currency value={totalPriceItem} />
-							<span className={cn(`ml-2 mt-0.5 md:mt-1.5 font-light text-base`, quantity > 1 && 'text-green-500 font-bold')}>
+							<div
+								className={cn(`ml-2 mt-0.5 md:mt-1.5 font-light text-base`, quantity > 1 && 'text-green-500 font-bold')}
+							>
 								{quantity}
 								<span className='ml-1'>u</span>
-							</span>
+							</div>
 						</>
 					)}
 				</div>
 			</div>
-			{/* <hr className='my-4' /> */}
 			<div className='mt-3 flex flex-col gap-y-4 bg-slate-100 dark:bg-slate-900 rounded-lg p-2'>
 				<div className='flex items-center gap-x-4'>
 					<h3 className='font-semibold'>Size:</h3>
@@ -92,7 +103,7 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 				bg-black border hover:border-2 
 				border-white text-white hover:scale-105 hover:border-green-500 hover:bg-black'
 				>
-					<span>{`${quantity < 1 ? 'Add to' : 'Checkout'} `}</span>
+					{`${quantity < 1 ? 'Add to' : 'Checkout'} `}
 					<ShoppingCart size={20} />
 				</Button>
 				<div>
