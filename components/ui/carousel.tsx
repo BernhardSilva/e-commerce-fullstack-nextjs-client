@@ -41,7 +41,7 @@ export const Carousel = (props: Props) => {
 			setCurrentImage(images[nextIndex]);
 			setCurrentIndex(nextIndex);
 			setLoaded(true);
-		}, 500);
+		}, 1000);
 	};
 
 	const selectedButtonClick = (index: number, currentImage: ImageProps) => {
@@ -51,7 +51,7 @@ export const Carousel = (props: Props) => {
 				setCurrentIndex(index);
 				setCurrentImage(currentImage);
 				setLoaded(true);
-			}, 500);
+			}, 1000);
 		}
 	};
 
@@ -68,11 +68,13 @@ export const Carousel = (props: Props) => {
 			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={currentImage?.id}>
 				<div
 					style={{
-						backgroundImage: `url(${currentImage?.imageUrl})`
+						backgroundImage: `url(${currentImage?.imageUrl})`,
+						opacity: loaded ? 1 : 0
 					}}
 					className={`rounded-xl relative aspect-square sm:aspect-[2.6/2]
-					md:aspect-[6.4/2] lg:aspect-[8.8/2] overflow-hidden bg-cover
-					brightness-125 dark:brightness-110`}
+						md:aspect-[6.4/2] lg:aspect-[8.8/2] overflow-hidden bg-cover
+						brightness-125 dark:brightness-110 transition-all duration-1000 ease-in
+						${loaded ? 'opacity-0' : ''}`}
 				>
 					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>
 						{currentImage?.label && (
@@ -90,7 +92,7 @@ export const Carousel = (props: Props) => {
 						{props.showButtons && (
 							<button
 								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black 
-								bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
+         						bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
 								onClick={previous}
 							>
 								<ArrowBigLeftIcon />
@@ -100,7 +102,7 @@ export const Carousel = (props: Props) => {
 						{props.showButtons && (
 							<button
 								className='absolute sm:p-2 md:p-4 lg:p-5 mr-1 right-1 mt-5 border border-black 
-								bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
+          						bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
 								onClick={next}
 							>
 								<ArrowBigRightIcon />
@@ -108,6 +110,7 @@ export const Carousel = (props: Props) => {
 						)}
 					</div>
 				</div>
+
 				{props.showButtons && (
 					<div className='h-full w-full flex flex-col justify-center items-center text-center gap-x-8'>
 						<div className='flex justify-center mt-5'>
