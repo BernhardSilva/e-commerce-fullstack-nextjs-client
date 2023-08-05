@@ -1,4 +1,4 @@
-import { ArrowBigLeftIcon, ArrowBigRightIcon, CircleIcon } from 'lucide-react';
+import { CircleIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface ImageProps {
@@ -68,45 +68,40 @@ export const Carousel = (props: Props) => {
 			<div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden' key={currentImage?.id}>
 				<div
 					style={{
-						backgroundImage: `url(${currentImage?.imageUrl})`,
-						opacity: loaded ? 1 : 0
+						backgroundImage: `url(${currentImage?.imageUrl})`
 					}}
 					className={`rounded-xl relative aspect-square sm:aspect-[2.6/2]
-						md:aspect-[6.4/2] lg:aspect-[8.8/2] overflow-hidden bg-cover
-						brightness-125 dark:brightness-110 transition-all duration-1000 ease-in
-						${loaded ? 'opacity-0' : ''}`}
+						md:aspect-[6.4/2] lg:aspect-[6.8/2] overflow-hidden bg-cover
+						brightness-70 dark:brightness-110 transition-all duration-1000 ease-in
+						${!loaded ? 'opacity-0' : 'opacity-100'}`}
 				>
-					<div className='h-full w-full flex flex-col justify-center text-center gap-y-8'>
+					<div className='h-full w-full grid place-items-center text-center'>
 						{currentImage?.label && (
-							<div className='flex justify-around mt-5'>
-								<div
-									className='border border-black bg-slate-50 bg-opacity-30
+							<div
+								className='p-2 border border-black bg-slate-50 bg-opacity-30
 									dark:border-white dark:bg-slate-950 dark:bg-opacity-50
-									rounded-xl p-2 font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '
-								>
-									{currentImage?.label}
-								</div>
+									rounded-xl font-bold sm:text-xl md:text-4xl lg:text-6xl sm:max-w-xl max-w-xs '
+							>
+								{currentImage?.label}
 							</div>
 						)}
 
 						{props.showButtons && (
 							<button
-								className='absolute sm:p-2 md:p-4 lg:p-5 ml-1 mt-5 left-1 border border-black 
-         						bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
+								className='absolute h-full left-0 w-10 lg:w-16
+								bg-slate-800 bg-opacity-30 hover:backdrop-brightness-125
+								dark:border-white dark:bg-opacity-50 dark:bg-slate-900'
 								onClick={previous}
-							>
-								<ArrowBigLeftIcon />
-							</button>
+							></button>
 						)}
 
 						{props.showButtons && (
 							<button
-								className='absolute sm:p-2 md:p-4 lg:p-5 mr-1 right-1 mt-5 border border-black 
-          						bg-slate-50 dark:border-white dark:bg-slate-900 bg-opacity-30 rounded-full'
+								className='absolute h-full right-0 w-10 lg:w-16
+								bg-slate-800 bg-opacity-30 hover:backdrop-brightness-125
+								dark:border-white dark:bg-opacity-50 dark:bg-slate-900'
 								onClick={next}
-							>
-								<ArrowBigRightIcon />
-							</button>
+							></button>
 						)}
 					</div>
 				</div>
