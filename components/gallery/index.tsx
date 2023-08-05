@@ -13,7 +13,7 @@ interface GalleryProps {
 
 const Gallery = ({ images = [] }: GalleryProps) => {
 	return (
-        // Small images selectors
+		// Small images selectors
 		<Tab.Group as='div' className='flex flex-col-reverse'>
 			<div className='mx-auto w-full max-w-2xl sm:block lg:max-w-none'>
 				<Tab.List className='grid grid-cols-4 gap-6'>

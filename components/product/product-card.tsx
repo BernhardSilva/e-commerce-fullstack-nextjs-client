@@ -16,7 +16,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ item }: ProductCardProps) => {
 	const router = useRouter();
-	const cart = useCart();
+	const {addItem} = useCart();
 
 	const previewModal = usePreviewModal();
 
@@ -33,7 +33,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
 	const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
 		event.stopPropagation();
 
-		cart.addItem(item);
+		addItem(item);
 	};
 	return (
 		<div

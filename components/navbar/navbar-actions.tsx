@@ -8,11 +8,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { MobileNavbarActions } from './mobile-navbar-actions';
 
-
 export const NavbarActions = () => {
 	const [isMounted, setIsMounted] = useState(false);
-
-	const cart = useCart();
+	const quantitySum = useCart((state) => state.quantityItemSum());
 	const router = useRouter();
 
 	useEffect(() => {
@@ -32,7 +30,7 @@ export const NavbarActions = () => {
 					>
 						<ShoppingBag size={20} />
 
-						<span className='ml-2 text-sm font-medium'>{cart.quantityItemSum()}</span>
+						<span className='ml-2 text-sm font-medium'>{quantitySum}</span>
 					</CustomButton>
 
 					<ThemeToggle />

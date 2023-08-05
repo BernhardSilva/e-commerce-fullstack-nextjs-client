@@ -18,14 +18,11 @@ import { ThemeToggle } from '../ui/theme-toggle';
 
 export function MobileNavbarActions() {
 	const router = useRouter();
-	const cart = useCart();
-	const cartQuantitySum = cart.quantityItemSum();
+	const cartQuantitySum = useCart((state) => state.quantityItemSum());
 	const { setTheme, theme } = useTheme();
-	console.log("🚀 ~ file: mobile-navbar-actions.tsx:24 ~ MobileNavbarActions ~ theme:", theme)
 	const { categories } = useCategory();
 
 	const handleClick = () => {
-
 		setTheme(theme === 'dark' ? 'light' : 'dark');
 	};
 
