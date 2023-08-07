@@ -73,7 +73,7 @@ export const Carousel = (props: Props) => {
 					className={`rounded-xl relative aspect-square sm:aspect-[2.6/2]
 						md:aspect-[6.4/2] lg:aspect-[6.8/2] overflow-hidden bg-cover
 						brightness-70 dark:brightness-110 transition-all duration-1000 ease-in
-						${!loaded ? 'opacity-0' : 'opacity-100'}`}
+						${(!loaded && props.autoPlay) ? 'opacity-0' : 'opacity-100'}`}
 				>
 					<div className='h-full w-full grid place-items-center text-center'>
 						{currentImage?.label && (

@@ -9,11 +9,6 @@ interface BillboardProps {
 }
 
 export const Billboards = ({ data }: BillboardProps) => {
-	const [isPlural, setIsPlural] = useState(false);
-
-	useEffect(() => {
-		data?.length > 1 ? setIsPlural(true) : setIsPlural(false);
-	}, [data]);
 
 	const images = data?.map((billboard) => ({
 		id: billboard?.id,
@@ -21,5 +16,5 @@ export const Billboards = ({ data }: BillboardProps) => {
 		label: billboard?.label
 	}));
 
-	return <Carousel images={images} autoPlay={isPlural} showButtons={isPlural} time={10000} />;
+	return <Carousel images={images} autoPlay={data?.length > 1} showButtons={data?.length > 1} time={10000} />;
 };
