@@ -1,8 +1,7 @@
 'use client';
 
-import { Billboard as BillboardType } from '@/types';
 import { Carousel } from '@/components/ui/carousel';
-import { useEffect, useState } from 'react';
+import { Billboard as BillboardType } from '@/types';
 
 interface BillboardProps {
 	data: BillboardType[];
