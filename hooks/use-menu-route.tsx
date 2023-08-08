@@ -4,12 +4,12 @@ import { useRouter } from 'next/navigation';
 export const useMenuRoute = () => {
 	const router = useRouter();
 
-	const handlePush = (path: keyof PathUrlTypes, id?: string) => {
+	const pushRoute = (path: keyof PathUrlTypes, id?: string) => {
 		const pathUrl = path as string;
 		if (pathUrl) {
 			router.push(`/${pathUrl}${id ? `/${id}` : ''}`);
 		}
 	};
 
-	return handlePush;
+	return pushRoute;
 };
