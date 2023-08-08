@@ -18,14 +18,14 @@ const CartItem = ({ data }: CartItemProps) => {
 	const quantityItem = useCart((state) => state.quantityItem(data.id));
 	const totalPriceItem = useCart((state) => state.totalPricePerItem(data.id));
 	const addOrSubstractItem = useCart((state) => state.addOrSubstractItem);
-	const handlePush = useMenuRoute();
+	const menuRoute = useMenuRoute();
 
 	const onRemove = () => {
 		removeItem(data.id);
 	};
 
 	const handleImageClick = () => {
-		handlePush('product', data.id);
+		menuRoute('product', data.id);
 	};
 
 	return (
