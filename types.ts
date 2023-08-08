@@ -43,3 +43,13 @@ export interface Billboard {
 export interface Store {
 	name: string;
 }
+
+export type PathUrlTypes = {
+	category: 'category';
+	product: 'product';
+	checkout: 'checkout';
+	success: 'success';
+	canceled: 'canceled';
+	home: '';
+	cart: 'cart';
+};

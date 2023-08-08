@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { Product } from '@/types';
 
-interface CartProduct extends Product {
+export interface CartProduct extends Product {
 	quantityItem: number;
 }
 

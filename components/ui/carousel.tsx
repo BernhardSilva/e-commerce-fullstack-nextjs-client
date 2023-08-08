@@ -56,8 +56,8 @@ export const Carousel = ({ images, maxImages, time, autoPlay, showButtons }: Car
 				{showButtons && (
 					<div className='h-full w-full flex flex-col justify-center items-center text-center gap-x-8'>
 						<div className='flex justify-center mt-5'>
-							{images.slice(0, maxImages).map((image, index) => (
-								<button key={image.id} className='px-4 py-2 mx-2' onClick={() => selectedButtonClick(index, image)}>
+							{images?.slice(0, maxImages).map((image, index) => (
+								<button key={image?.id} className='px-4 py-2 mx-2' onClick={() => selectedButtonClick(index, image)}>
 									{index === currentIndex ? <CircleIcon /> : <CircleIcon color='#616161' />}
 								</button>
 							))}

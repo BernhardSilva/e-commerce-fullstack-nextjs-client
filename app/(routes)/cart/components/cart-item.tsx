@@ -7,7 +7,7 @@ import IconButton from '@/components/ui/icon-button';
 import useCart from '@/hooks/use-cart';
 import { cn } from '@/lib/utils';
 import { Product } from '@/types';
-import { useRouter } from 'next/navigation';
+import { useMenuRoute } from '@/hooks/use-menu-route';
 
 interface CartItemProps {
 	data: Product;
@@ -18,14 +18,14 @@ const CartItem = ({ data }: CartItemProps) => {
 	const quantityItem = useCart((state) => state.quantityItem(data.id));
 	const totalPriceItem = useCart((state) => state.totalPricePerItem(data.id));
 	const addOrSubstractItem = useCart((state) => state.addOrSubstractItem);
-	const router = useRouter();
+	const handlePush = useMenuRoute();
 
 	const onRemove = () => {
 		removeItem(data.id);
 	};
 
 	const handleImageClick = () => {
-		router.push(`/product/${data.id}`);
+		handlePush('product', data.id);
 	};
 
 	return (

@@ -3,13 +3,13 @@
 import getProducts from '@/actions/get-products';
 import { useDebounce } from '@/hooks/use-debounce';
 import { Product } from '@/types';
-import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import useSWR from 'swr';
 import InputSearch from '../ui/input-search';
 import SearchProductItem from './search-product-item';
 import { cn } from '@/lib/utils';
+import { useMenuRoute } from '@/hooks/use-menu-route';
 
 interface SearchProductProps {
 	className?: string;
@@ -20,7 +20,7 @@ interface SearchProductProps {
 const SearchProduct = ({ className, inputClassName, dropDownClassName }: SearchProductProps) => {
 	const [inputValue, setInputValue] = useState<string>('');
 	const [products, setProducts] = useState<Product[]>();
-	const router = useRouter();
+	const menuRoute = useMenuRoute();
 	const searchResultsRef = useRef<HTMLDivElement>(null);
 	const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
 	const debouncedValue = useDebounce(inputValue);
@@ -65,7 +65,7 @@ const SearchProduct = ({ className, inputClassName, dropDownClassName }: SearchP
 	}, [productData, debouncedValue]);
 
 	const handleSelectProduct = (id: string) => {
-		router.push(`/product/${id}`);
+		menuRoute('product', id);
 		cleanSearchResults();
 	};
 

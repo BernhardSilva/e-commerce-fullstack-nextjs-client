@@ -5,20 +5,20 @@ import { ShoppingCart, Trash } from 'lucide-react';
 import Currency from '@/components/ui/currency';
 
 import useCart from '@/hooks/use-cart';
+import { useHydration } from '@/hooks/use-hydration';
+import { useMenuRoute } from '@/hooks/use-menu-route';
+import usePreviewModal from '@/hooks/use-preview-modal';
 import { cn } from '@/lib/utils';
 import { Product } from '@/types';
 import { Button } from '../ui/button';
 import IconButton from '../ui/icon-button';
-import { useRouter } from 'next/navigation';
-import usePreviewModal from '@/hooks/use-preview-modal';
-import { useEffect, useState } from 'react';
 
 interface ProductInfoProps {
 	data: Product;
 }
 
 const ProductInfo = ({ data }: ProductInfoProps) => {
-	const [isMounted, setIsMounted] = useState(false);
+	const isMounted = useHydration();
 
 	const addItem = useCart((state) => state.addItem);
 	const removeItem = useCart((state) => state.removeItem);
@@ -26,7 +26,8 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 	const totalPriceItem = useCart((state) => state.totalPricePerItem(data.id));
 	const addOrSubstractItem = useCart((state) => state.addOrSubstractItem);
 
-	const router = useRouter();
+	const menuRoute = useMenuRoute();
+
 	const { onClose } = usePreviewModal();
 
 	const onAddToCart = () => {
@@ -41,14 +42,10 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 		if (quantity === 0) {
 			onAddToCart();
 		} else {
-			router.push(`/cart/`);
+			menuRoute('cart');
 			onClose();
 		}
 	};
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
 
 	if (!isMounted) return null;
 

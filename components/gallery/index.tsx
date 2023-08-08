@@ -3,20 +3,16 @@
 import { Tab } from '@headlessui/react';
 import NextImage from 'next/image';
 
+import { useHydration } from '@/hooks/use-hydration';
 import { Image } from '@/types';
 import GalleryTab from './gallery-tab';
-import { useEffect, useState } from 'react';
 
 interface GalleryProps {
 	images: Image[];
 }
 
 const Gallery = ({ images }: GalleryProps) => {
-	const [isMounted, setIsMounted] = useState(false);
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
+	const isMounted = useHydration();
 
 	if (!isMounted) return null;
 	

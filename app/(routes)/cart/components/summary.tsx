@@ -1,55 +1,14 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 import Currency from '@/components/ui/currency';
 import CustomButton from '@/components/ui/custom-button';
-import useCart from '@/hooks/use-cart';
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
-import SuccessPage from './success';
+import { useCheckout } from '@/hooks/use-checkout';
 import CanceledPage from './canceled';
+import SuccessPage from './success';
 
 const Summary = () => {
-	const searchParams = useSearchParams();
-	const { items, removeAll, totalPriceCartSum } = useCart();
-	const totalSum = totalPriceCartSum();
-
-	const [loading, setLoading] = useState(false);
-	const router = useRouter();
-
-	useEffect(() => {
-		if (searchParams.get('success')) {
-			toast.success('Payment completed.');
-			removeAll();
-		}
-
-		if (searchParams.get('canceled')) {
-			toast.error('Order canceled.');
-		}
-	}, [searchParams, removeAll, router]);
-
-	//checkout order
-	const onCheckout = async () => {
-		try {
-			setLoading(true);
-			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}/${process.env.NEXT_PUBLIC_API_STORE}/checkout`,
-				{
-					items
-				}
-			);
-
-			window.location = response.data.url;
-		} catch (error) {
-			toast.error('Something went wrong.');
-			console.error(error);
-			setLoading(true);
-		} finally {
-			setLoading(false);
-		}
-	};
+	const {items, loading, onCheckout, searchParams, totalSum} = useCheckout()
 
 	return (
 		<>

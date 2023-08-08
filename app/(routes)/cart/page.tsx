@@ -1,24 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 
 import Container from '@/components/ui/container';
 import useCart from '@/hooks/use-cart';
 
-import Summary from './components/summary';
+import { useHydration } from '@/hooks/use-hydration';
 import CartItem from './components/cart-item';
+import Summary from './components/summary';
 
 const CartPage = () => {
-	const [isMounted, setIsMounted] = useState(false);
+	const isMounted = useHydration();
 	const { items } = useCart();
 
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
-
-	if (!isMounted) {
-		return null;
-	}
+	if (!isMounted) return null;
 
 	return (
 		<div>

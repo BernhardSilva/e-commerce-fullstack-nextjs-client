@@ -19,7 +19,7 @@ const Navbar = async () => {
 						<Link href='/' className='ml-4 flex lg:ml-0 gap-x-2'>
 							<p className='font-bold text-xl'>{store?.name}</p>
 						</Link>
-						<div className='hidden lg:block'>
+						<div className={`${categories?.length > 3 ? 'hidden' : 'hidden lg:block'} `}>
 							<NavbarLinks data={categories} />
 						</div>
 					</div>

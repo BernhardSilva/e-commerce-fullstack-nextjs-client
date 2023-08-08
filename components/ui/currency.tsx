@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useHydration } from '@/hooks/use-hydration';
 
 export const formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -12,12 +12,7 @@ type CurrencyProps = {
 };
 
 const Currency = ({ value = 0 }: CurrencyProps) => {
-	const [isMounted, setIsMounted] = useState(false);
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
-
+	const isMounted = useHydration();
 	if (!isMounted) return null;
 
 	return <div className='font-semibold'>{formatter.format(Number(value))}</div>;

@@ -18,9 +18,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 		categoryId: product?.category?.id
 	});
 
-	if (!product) {
-		return null;
-	}
+	if (!product) return null;
 
 	return (
 		<div>
