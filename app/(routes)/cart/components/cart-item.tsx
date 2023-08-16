@@ -48,6 +48,11 @@ const CartItem = ({ data }: CartItemProps) => {
 				<div className='absolute z-10 right-0 top-0'>
 					<IconButton className='hover:border-red-500' onClick={onRemove} icon={<X size={15} color='red' />} />
 				</div>
+				<div>
+					<span className='text-sm font-thin'>
+						<b>Stock:</b> {data.stock[0].quantity}
+					</span>
+				</div>
 				<div className='inline-flex mt-2'>
 					<Currency value={data.price} />
 					<span className='ml-2'>u</span>
