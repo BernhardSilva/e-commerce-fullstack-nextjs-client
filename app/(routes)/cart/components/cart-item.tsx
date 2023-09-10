@@ -20,6 +20,10 @@ const CartItem = ({ data }: CartItemProps) => {
 	const addOrSubstractItem = useCart((state) => state.addOrSubstractItem);
 	const menuRoute = useMenuRoute();
 
+	const stockQuantity = data.stock[0]?.quantity;
+
+	const stockMaxQuantity = (stockQuantity ?? 0) > 0 && (stockQuantity ?? 0) < 20 ? stockQuantity : 20;
+
 	const onRemove = () => {
 		removeItem(data.id);
 	};
@@ -50,7 +54,14 @@ const CartItem = ({ data }: CartItemProps) => {
 				</div>
 				<div>
 					<span className='text-sm font-thin'>
-						<b>Stock:</b> {data.stock[0].quantity}
+						{stockQuantity === 0 ? (
+							'Out of stock'
+						) : (
+							<>
+								<b className='mr-1'>Stock:</b>
+								{stockQuantity}
+							</>
+						)}
 					</span>
 				</div>
 				<div className='inline-flex mt-2'>
@@ -94,7 +105,7 @@ const CartItem = ({ data }: CartItemProps) => {
 								className='ml-2 h-8 w-8 rounded-[100%] 
 								 bg-black  dark:border dark:border-white text-white 
 								 hover:bg-black hover:border-2 hover:border-green-500 dark:hover:border-green-500 hover:scale-110'
-								disabled={quantityItem === 20}
+								disabled={quantityItem < 1 || quantityItem === stockMaxQuantity}
 								onClick={() => addOrSubstractItem(data.id, 1)}
 							>
 								+

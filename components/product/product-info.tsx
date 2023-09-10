@@ -26,6 +26,10 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 	const totalPriceItem = useCart((state) => state.totalPricePerItem(data.id));
 	const addOrSubstractItem = useCart((state) => state.addOrSubstractItem);
 
+	const stockQuantity = data.stock[0].quantity;
+
+	const stockMaxQuantity = (stockQuantity ?? 0) > 0 && (stockQuantity ?? 0) < 20 ? stockQuantity : 20;
+
 	const menuRoute = useMenuRoute();
 
 	const { onClose } = usePreviewModal();
@@ -89,13 +93,14 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 					/>
 				</div>
 				<div className='flex items-center gap-x-4'>
-					<h3 className='font-semibold'>Stock:</h3>
-					<div>{data?.stock[0]?.quantity}</div>
+					<h3 className='font-semibold'>{stockQuantity === 0 ? 'Out of stock' : 'Stock:'}</h3>
+					{stockQuantity !== 0 && <div>{stockQuantity}</div>}
 				</div>
 			</div>
 			<div className='mt-10 flex items-center gap-x-3'>
 				<Button
 					onClick={handleCartClick}
+					disabled={stockQuantity === 0}
 					className='flex items-center gap-x-2 
 				bg-black border hover:border-2 
 				border-white text-white hover:scale-105 hover:border-green-500 hover:bg-black'
@@ -109,7 +114,7 @@ const ProductInfo = ({ data }: ProductInfoProps) => {
 						className='ml-2 h-8 w-8 rounded-[100%] 
 								 bg-black  dark:border dark:border-white text-white 
 								 hover:bg-black hover:border-2 hover:border-green-500 dark:hover:border-green-500 hover:scale-110'
-						disabled={quantity < 1 || quantity === 20}
+						disabled={quantity < 1 || quantity === stockMaxQuantity}
 						onClick={() => addOrSubstractItem(data.id, 1)}
 					>
 						+
